@@ -15,7 +15,7 @@ const password = encodeURIComponent(config.pwd);
 const authMechanism = 'DEFAULT';
 
 // Connection URL
-const url = `mongodb://${user}:${password}@${config.host}:${config.port}/webservice?authMechanism=${authMechanism}`
+const url = `mongodb://${user}:${password}@${config.host}:${config.port}/intelligent-lock?authMechanism=${authMechanism}`
 let mongodb = null
 
 const getCollection = async(col) => {
