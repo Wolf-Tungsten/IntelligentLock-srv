@@ -14,9 +14,10 @@ module.exports = async(ctx, next) => {
     let _userInfo = null
     ctx.userInfo = () => {
         if (_userInfo) {
+            _userInfo._id = _userInfo._id.toString()
             return _userInfo
         } else {
-            throw '401'
+            throw 401
         }
     }
 
@@ -25,5 +26,5 @@ module.exports = async(ctx, next) => {
     }
 
     await next()
-    
+
 }

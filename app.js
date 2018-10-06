@@ -69,6 +69,7 @@ app.use(require('./middleware/axios'))
 */
 // 1. MongoDB数据库接口
 app.use(require('./middleware/presistence'))
+app.use(require('./middleware/auth'))
 
 /**
   ## F. 路由层
