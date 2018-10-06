@@ -49,6 +49,17 @@ exports.start = () => {
           testClient.defaults.baseURL = params
           console.log(`\n基地址改为 ${params} 了！`)
           return callback(null)
+        } else if (/^auth$/.test(path) && !method) {
+          method = 'post'
+          let [username, password] = params.split(/\s+/g)
+          path = '/app/signin'
+          if (password) {
+            composedParams = { username, password }
+          } else if (params) {
+            testClient.defaults.headers = { token: params }
+            console.log(`\n用户身份改为 ${params} 了！`)
+            return callback(null)
+          }
         } else {
           try {
             composedParams = vm.runInThisContext('(' + params + ')')
@@ -75,9 +86,9 @@ exports.start = () => {
       }
 
       testClient[method](path, composedParams).then(res => {
-        if (/^\/?auth$/.test(path) && res.data.result) {
+        if (/signin/.test(path) && res.data.result) {
           if (method === 'post') {
-            console.log(`\n用 ${composedParams.cardnum} 的身份登录了！`)
+            console.log(`\n用 ${composedParams.username} 的身份登录了！`)
             testClient.defaults.headers = { token: res.data.result }
           } else if (method === 'delete') {
             console.log(`\n退出登录了！`)
