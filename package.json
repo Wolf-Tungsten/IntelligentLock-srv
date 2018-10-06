@@ -1,0 +1,42 @@
+{
+  "name": "herald-ws3",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "yarn && cross-env NODE_ENV=development nodemon app.js",
+    "start": "yarn && cross-env NODE_ENV=production nodemon app.js",
+    "profile": "yarn && cross-env NODE_ENV=profile nodemon app.js"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "axios-cookiejar-support": "^0.3.2",
+    "bluebird": "^3.5.1",
+    "chalk": "^2.3.0",
+    "chardet": "^0.4.2",
+    "cheerio": "^1.0.0-rc.2",
+    "co-wechat": "^2.3.0",
+    "cross-env": "^5.2.0",
+    "form-data": "^2.3.2",
+    "iconv": "^2.3.0",
+    "js-md5": "^0.7.3",
+    "js-yaml": "^3.10.0",
+    "kf-router": "^2.2.2",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "moment": "^2.22.1",
+    "mongodb": "^3.1.6",
+    "node-europa": "^4.0.0",
+    "nodemon": "^1.15.1",
+    "ora": "^1.4.0",
+    "prettyjson": "^1.2.1",
+    "qiniu": "^7.1.2",
+    "redis": "^2.8.0",
+    "repl.history": "^0.1.4",
+    "tough-cookie": "^2.3.3",
+    "ws": "^4.0.0"
+  },
+  "resolutions": {
+    "upath": "^1.0.5",
+    "nan": "^2.10.0"
+  }
+}
