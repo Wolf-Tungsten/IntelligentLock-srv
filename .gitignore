@@ -19,5 +19,6 @@ slack.json
 spider-secret.json
 redis-secret.json
 log
+secret/
 
 
