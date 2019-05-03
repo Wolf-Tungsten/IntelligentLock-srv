@@ -21,10 +21,12 @@ func AuthMiddleware(c *gin.Context) {
 			c.Next()
 		} else {
 			c.JSON(http.StatusOK, models.Response{Success:false, Code:http.StatusUnauthorized, Reason:"身份认证失效"})
+			c.Abort()
 		}
 		// 处理请求
 
 	} else {
 		c.JSON(http.StatusOK, models.Response{Success:false, Code:http.StatusUnauthorized, Reason:"需要身份认证"})
+		c.Abort()
 	}
 }
