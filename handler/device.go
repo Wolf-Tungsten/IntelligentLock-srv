@@ -52,10 +52,13 @@ func Activate(ctx *gin.Context) {
 
 	// 执行到此处说明设备存在并已经被激活，那么激活请求被视为申请访问
 	if deviceInfo.Admin != userInfo.Id {
-		_, err = db.Collection("access").InsertOne(ctx, models.DeviceAccess{DeviceUuid:requestBody.Uuid, User:userInfo.Id, Allowed:false})
+		count, _ := db.Collection("access").CountDocuments(ctx, models.DeviceAccess{DeviceUuid:requestBody.Uuid, User:userInfo.Id, Allowed:false})
+		if count <= 0 {
+			_, err = db.Collection("access").InsertOne(ctx, models.DeviceAccess{DeviceUuid:requestBody.Uuid, User:userInfo.Id, Allowed:false})
+		}
 		ctx.JSON(http.StatusOK, models.Response{Success:true, Code:http.StatusOK, Result:"申请提交成功"})
 	} else {
-		ctx.JSON(http.StatusOK, models.Response{Success:false, Code:http.StatusBadRequest, Reason:"重复激活"})
+		ctx.JSON(http.StatusOK, models.Response{Success:false, Code:http.StatusBadRequest, Reason:"请勿重复激活"})
 	}
 
 }
