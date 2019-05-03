@@ -19,5 +19,7 @@ func main() {
 
 	handler.AuthHandler(r)
 	handler.UserHandler(r)
+	handler.DeviceHandler(r)
+	handler.AdminHandler(r)
 	r.Run(":" + Port)
 }
